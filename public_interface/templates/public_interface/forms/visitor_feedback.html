@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block content %}
+    {{ form.media }}
+    <form method="post" action="">
+        {% csrf_token %}
+        {# Show any non-field errors #}
+        {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+        <!-- Visitor Information -->
+        <section class="form-section">
+            <h2 class="form-section-title">Visitor Information</h2>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.first_name.id_for_label }}">
+                        First Name <span>*</span>
+                    </label>
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.last_name.id_for_label }}">
+                        Last Name <span>*</span>
+                    </label>
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.company_name.id_for_label }}">Company Name</label>
+                    {{ form.company_name }}
+                    {{ form.company_name.errors }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.visit_date.id_for_label }}">
+                        Date of Visit <span>*</span>
+                    </label>
+                    {{ form.visit_date }}
+                    {{ form.visit_date.errors }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.purpose.id_for_label }}">
+                        Purpose of Visit <span>*</span>
+                    </label>
+                    {{ form.purpose }}
+                    {{ form.purpose.errors }}
+                    <p class="form-hint">If "Other", please specify below.</p>
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.other_purpose.id_for_label }}">Other (if applicable)</label>
+                    {{ form.other_purpose }}
+                    {{ form.other_purpose.errors }}
+                </div>
+            </div>
+        </section>
+        <!-- Ratings -->
+        <section class="form-section">
+            <h2 class="form-section-title">Ratings (1 – 5)</h2>
+            <p class="form-hint">1 = Very Poor, 5 = Excellent</p>
+            <div class="rating-row">
+                <div class="rating-label">Facility cleanliness</div>
+                <div class="rating-options">
+                    {{ form.facility_cleanliness }}
+                    {{ form.facility_cleanliness.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Layout &amp; process flow</div>
+                <div class="rating-options">
+                    {{ form.layout_flow }}
+                    {{ form.layout_flow.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Food safety &amp; handling</div>
+                <div class="rating-options">
+                    {{ form.food_safety }}
+                    {{ form.food_safety.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Employee hygiene</div>
+                <div class="rating-options">
+                    {{ form.employee_hygiene }}
+                    {{ form.employee_hygiene.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Temperature control</div>
+                <div class="rating-options">
+                    {{ form.temperature_control }}
+                    {{ form.temperature_control.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Documentation &amp; records</div>
+                <div class="rating-options">
+                    {{ form.documentation }}
+                    {{ form.documentation.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Responsiveness of staff</div>
+                <div class="rating-options">
+                    {{ form.responsiveness }}
+                    {{ form.responsiveness.errors }}
+                </div>
+            </div>
+            <div class="rating-row">
+                <div class="rating-label">Overall impression</div>
+                <div class="rating-options">
+                    {{ form.overall_impression }}
+                    {{ form.overall_impression.errors }}
+                </div>
+            </div>
+        </section>
+        <!-- Feedback -->
+        <section class="form-section">
+            <h2 class="form-section-title">Feedback</h2>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.strengths.id_for_label }}">
+                        Strengths / Good practices observed <span>*</span>
+                    </label>
+                    {{ form.strengths }}
+                    {{ form.strengths.errors }}
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="{{ form.improvements.id_for_label }}">
+                        Areas for improvement <span>*</span>
+                    </label>
+                    {{ form.improvements }}
+                    {{ form.improvements.errors }}
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-label" for="{{ form.comments.id_for_label }}">Additional comments (optional)</label>
+                {{ form.comments }}
+                {{ form.comments.errors }}
+            </div>
+        </section>
+        <!-- Signature -->
+        <section class="form-section">
+            <h2 class="form-section-title">Signature</h2>
+            <p class="form-hint">Please sign below.</p>
+            {{ form.signature }}
+            {{ form.signature.errors }}
+        </section>
+        <!-- Submit -->
+        <div class="form-footer">
+            <p class="text-muted">
+                By submitting this form, you confirm that the information shared is accurate to the best of your knowledge.
+            </p>
+            <button type="submit" class="btn-primary">Submit Feedback</button>
+        </div>
+    </form>
+{% endblock content %}
