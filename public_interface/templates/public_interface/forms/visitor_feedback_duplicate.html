@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load static %}
+{% block form_title %}
+    <h1 class="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">Visitor Feedback Form</h1>
+{% endblock form_title %}
+{% block content %}
+    {{ form.media }}
+    <div class="py-4 sm:py-6 md:py-8 lg:py-12 px-3 sm:px-4 md:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <div class="card-3d bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 sm:px-8 lg:px-10 py-6 sm:py-8">
+                    <div class="flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl mb-4 animate-float p-3 sm:p-4 shadow-lg">
+                                <img src="{% static 'images/logo.png' %}"
+                                     alt="Company Logo"
+                                     class="w-full h-full object-contain"
+                                     height="30px"
+                                     width="30px">
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">Visitor Feedback Form</h2>
+                            <p class="text-blue-100 text-sm sm:text-base">Complete all required fields to submit your feedback</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 sm:px-8 lg:px-10 py-6 sm:py-8 lg:py-10 overflow-visible">
+                    <form class="space-y-6 sm:space-y-8">
+                        <div class="animate-slideInLeft">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md mr-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Personal Information</h3>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Full Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        {{ form.first_name }}
+                                        {{ form.first_name.errors }}
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <svg class="w-5 h-5 text-gray-400"
+                                                 fill="none"
+                                                 stroke="currentColor"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Company Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        {{ form.company_name }}
+                                        {{ form.company_name.errors }}
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <svg class="w-5 h-5 text-gray-400"
+                                                 fill="none"
+                                                 stroke="currentColor"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 012 2z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t-2 border-gray-200"></div>
+                        <div class="animate-slideInLeft" style="animation-delay: 0.1s;">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md mr-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 012 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Visit Details</h3>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                <div class="date-input-wrapper">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Visit Date <span class="text-red-500">*</span>
+                                    </label>
+                                    {{ form.visit_date }}
+                                    {{ form.visit_date.errors }}
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Visit Purpose <span class="text-red-500">*</span>
+                                    </label>
+                                    {{ form.purpose }}
+                                    {{ form.purpose.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t-2 border-gray-200"></div>
+                        <div class="animate-slideInLeft" style="animation-delay: 0.1s;">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md mr-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 012 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Ratings (1 - 5)</h3>
+                            </div>
+                            <div class="lg:col-span-2">
+                                <div class="date-input-wrapper">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        Facility cleanliness <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="form-check form-check-inline">
+                                        {{ form.facility_cleanliness }}
+                                        {{ form.facility_cleanliness.errors }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t-2 border-gray-200"></div>
+                        <div class="animate-slideInLeft" style="animation-delay: 0.5s;">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md mr-3">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Declaration &amp; Consent</h3>
+                            </div>
+                            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 sm:p-6 border-2 border-blue-200 shadow-md">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox"
+                                           class="mt-1 mr-3 sm:mr-4 w-5 h-5 sm:w-6 sm:h-6 text-blue-600 border-2 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer transition-transform group-hover:scale-110 border-gray-300">
+                                    <span class="text-sm sm:text-base text-gray-700 leading-relaxed">I confirm that I will follow all hand washing/sanitizing and social distancing protocols. I understand and acknowledge that should I make a false statement regarding my medical history, or if I wilfully conceal any material facts, I could pose a serious risk to the safety of food products which may cause consumers to become seriously ill. I accept full responsibility for the accuracy of the information provided.</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pt-4 sm:pt-6">
+                            <button type="submit"
+                                    class="button-3d w-full py-4 sm:py-5 px-6 rounded-xl text-white font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 hover:from-blue-700 hover:via-blue-800 hover:to-blue-700">
+                                <span class="relative z-10 flex items-center justify-center">
+                                    <svg class="w-6 h-6 mr-2"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
+                                    </svg>
+                                Submit Visitor Request</span>
+                            </button>
+                            <p class="text-center text-xs sm:text-sm text-gray-500 mt-3 sm:mt-4">
+                                By submitting this form, you agree to our terms and conditions
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-xs sm:text-sm py-6 sm:py-8">
+                <p class="mb-2">
+                    © 2025 The Deep Seafood Company.
+                    <br>
+                    All rights reserved.
+                </p>
+                <div class="flex items-center justify-center space-x-4 text-xs">
+                    <a href="https://thedeepseafood.com/privacy-policy/"
+                       class="hover:text-blue-600 transition-colors">Privacy Policy</a><span>•</span><a href="https://thedeepseafood.com/terms-and-conditions/"
+   class="hover:text-blue-600 transition-colors">Terms of Service</a><span>•</span><a href="https://thedeepseafood.com/contact"
+   class="hover:text-blue-600 transition-colors">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -20,7 +20,7 @@ def visitor_feedback(request):
 
     return render(
         request,
-        "public_interface/forms/visitor_feedback.html",
+        "public_interface/forms/visitor_feedback_duplicate.html",
         {
             "form": form,
         },
