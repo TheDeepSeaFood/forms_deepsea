@@ -17,6 +17,12 @@ class VisitorFeedbackForm(forms.ModelForm):
                     "class": "input-3d w-full px-4 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
                 }
             ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter your last name",
+                    "class": "input-3d w-full px-4 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
             "company_name": forms.TextInput(
                 attrs={
                     "placeholder": "Your Company Name",
@@ -35,6 +41,12 @@ class VisitorFeedbackForm(forms.ModelForm):
                     "class": "input-3d w-full px-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 cursor-pointer border-gray-300 bg-white hover:border-blue-400",
                 }
             ),
+            "other_purpose": forms.TextInput(
+                attrs={
+                    "placeholder": "Please specify other purpose",
+                    "class": "input-3d w-full px-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
             "facility_cleanliness": forms.RadioSelect(
                 choices=RATING_CHOICES, attrs={"class": "form-check-inline"}
             ),
@@ -45,4 +57,25 @@ class VisitorFeedbackForm(forms.ModelForm):
             "documentation": forms.RadioSelect(choices=RATING_CHOICES),
             "responsiveness": forms.RadioSelect(choices=RATING_CHOICES),
             "overall_impression": forms.RadioSelect(choices=RATING_CHOICES),
+            "strengths": forms.Textarea(
+                attrs={
+                    "placeholder": "Enter strengths and good practices observed",
+                    "rows": 4,
+                    "class": "input-3d w-full px-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
+            "improvements": forms.Textarea(
+                attrs={
+                    "placeholder": "Enter areas for improvement",
+                    "rows": 4,
+                    "class": "input-3d w-full px-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
+            "comments": forms.Textarea(
+                attrs={
+                    "placeholder": "Enter any additional comments (optional)",
+                    "rows": 4,
+                    "class": "input-3d w-full px-4 py-3 sm:py-4 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
         }
