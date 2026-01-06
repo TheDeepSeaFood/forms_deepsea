@@ -47,7 +47,8 @@
                             </div>
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.first_name.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.first_name.id_for_label }}">
                                         First Name <span class="text-red-500">*</span>
                                     </label>
                                     <div class="relative">
@@ -65,7 +66,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.last_name.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.last_name.id_for_label }}">
                                         Last Name <span class="text-red-500">*</span>
                                     </label>
                                     <div class="relative">
@@ -83,9 +85,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.company_name.id_for_label }}">
-                                        Company Name
-                                    </label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.company_name.id_for_label }}">Company Name</label>
                                     <div class="relative">
                                         {{ form.company_name }}
                                         {{ form.company_name.errors }}
@@ -118,14 +119,16 @@
                             </div>
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                 <div class="date-input-wrapper">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.visit_date.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.visit_date.id_for_label }}">
                                         Date of Visit <span class="text-red-500">*</span>
                                     </label>
                                     {{ form.visit_date }}
                                     {{ form.visit_date.errors }}
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.purpose.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.purpose.id_for_label }}">
                                         Purpose of Visit <span class="text-red-500">*</span>
                                     </label>
                                     {{ form.purpose }}
@@ -133,9 +136,8 @@
                                     <p class="text-xs sm:text-sm text-gray-500 mt-2">If "Other", please specify below.</p>
                                 </div>
                                 <div class="lg:col-span-2">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.other_purpose.id_for_label }}">
-                                        Other (if applicable)
-                                    </label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.other_purpose.id_for_label }}">Other (if applicable)</label>
                                     {{ form.other_purpose }}
                                     {{ form.other_purpose.errors }}
                                 </div>
@@ -164,6 +166,22 @@
                                     <div class="form-check form-check-inline">
                                         {{ form.facility_cleanliness }}
                                         {{ form.facility_cleanliness.errors }}
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="inlineRadio1"
+                                               value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">1</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input"
+                                               type="radio"
+                                               name="inlineRadioOptions"
+                                               id="inlineRadio2"
+                                               value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">2</label>
                                     </div>
                                 </div>
                                 <div>
@@ -247,14 +265,16 @@
                             </div>
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.strengths.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.strengths.id_for_label }}">
                                         Strengths / Good practices observed <span class="text-red-500">*</span>
                                     </label>
                                     {{ form.strengths }}
                                     {{ form.strengths.errors }}
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.improvements.id_for_label }}">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                           for="{{ form.improvements.id_for_label }}">
                                         Areas for improvement <span class="text-red-500">*</span>
                                     </label>
                                     {{ form.improvements }}
@@ -262,9 +282,8 @@
                                 </div>
                             </div>
                             <div class="mt-4 sm:mt-6">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2" for="{{ form.comments.id_for_label }}">
-                                    Additional comments (optional)
-                                </label>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2"
+                                       for="{{ form.comments.id_for_label }}">Additional comments (optional)</label>
                                 {{ form.comments }}
                                 {{ form.comments.errors }}
                             </div>
