@@ -9,4 +9,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", include("public_interface.urls")),
+    path("dashboard/", include("dashboard.urls")),
 ]

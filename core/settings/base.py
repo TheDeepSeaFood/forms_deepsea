@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 # Add External Apps Here
 EXTERNAL_APPS = [
     "public_interface.apps.PublicInterfaceConfig",
+    "dashboard.apps.DashboardConfig",
     'signature_pad',
 ]
 
