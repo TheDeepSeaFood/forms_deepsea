@@ -14,7 +14,7 @@ def dashboard(request):
     return render(request, "dashboard/dashboard.html", context)
 
 
-def login(request):
+def user_login(request):
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
         password = request.POST.get("password", "")
