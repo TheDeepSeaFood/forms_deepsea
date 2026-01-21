@@ -68,3 +68,13 @@ class CustomerDataCollection(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.team_to_contact}"
+
+
+class OceanoSpinnerDraw(models.Model):
+    name = models.CharField(max_length=150)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"

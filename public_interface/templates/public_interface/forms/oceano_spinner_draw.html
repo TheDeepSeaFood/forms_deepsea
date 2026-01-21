@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-    Customer Data Collection
+    Oceano Spinner Draw
 {% endblock title %}
 {% block form_title %}
-    <h1 class="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">Customer Data Collection</h1>
-    <p class="text-xs text-gray-500 hidden sm:block">Form to collect the customer data</p>
+<h1 class="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">Oceano Spinner Draw</h1>
+<p class="text-xs text-gray-500 hidden sm:block">Form to collect the spinner data</p>
 {% endblock form_title %}
 {% block content %}
     {{ form.media }}
@@ -15,14 +15,14 @@
                 <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 sm:px-8 lg:px-10 py-6 sm:py-8">
                     <div class="flex items-center justify-center">
                         <div class="text-center">
-                            <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl mb-4 animate-float p-3 sm:p-4 shadow-lg">
-                                <img src="{% static 'images/logo.png' %}"
+                            <div class="inline-flex items-center justify-center w-50 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl mb-4 animate-float p-3 sm:p-4 shadow-lg">
+                                <img src="{% static 'images/logo-oceano.png' %}"
                                      alt="Company Logo"
                                      class="w-full h-full object-contain"
                                      height="30px"
                                      width="30px">
                             </div>
-                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">Customer Data Collection</h2>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">Oceano Spinner Draw</h2>
                             <p class="text-blue-100 text-sm sm:text-base">Complete all required fields to submit</p>
                         </div>
                     </div>
@@ -108,40 +108,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="border-t-2 border-gray-200"></div>
-                        <div class="animate-slideInLeft">
-                            <div class="flex items-center mb-4 sm:mb-6">
-                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md mr-3">
-                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                                         fill="none"
-                                         stroke="currentColor"
-                                         viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Who should contact you?</h3>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                                <div class="lg:col-span-2">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
-                                           for="{{ form.team_to_contact.id_for_label }}">
-                                        Team to contact <span class="text-red-500">*</span>
-                                    </label>
-                                    {{ form.team_to_contact }}
-                                    {{ form.team_to_contact.errors }}
-                                    <p class="text-xs sm:text-sm text-gray-500 mt-2">If you select “Other”, please specify below.</p>
-                                </div>
-                                <div class="lg:col-span-2" id="other-team-wrapper">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2"
-                                           for="{{ form.other_team_description.id_for_label }}">
-                                        Other team description <span class="text-red-500">*</span>
-                                    </label>
-                                    {{ form.other_team_description }}
-                                    {{ form.other_team_description.errors }}
-                                </div>
-                            </div>
-                        </div>
                         <div class="pt-4 sm:pt-6">
                             <button type="submit"
                                     class="button-3d w-full py-4 sm:py-5 px-6 rounded-xl text-white font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-600 hover:from-blue-700 hover:via-blue-800 hover:to-blue-700">
@@ -161,23 +127,6 @@
                             </p>
                         </div>
                     </form>
-                    <script>
-                        (function () {
-                            const selectEl = document.getElementById("{{ form.team_to_contact.id_for_label }}");
-                            const otherWrapper = document.getElementById("other-team-wrapper");
-
-                            function toggleOther() {
-                                if (!selectEl || !otherWrapper) return;
-                                const isOther = selectEl.value === "other";
-                                otherWrapper.style.display = isOther ? "" : "none";
-                            }
-
-                            toggleOther();
-                            if (selectEl) {
-                                selectEl.addEventListener("change", toggleOther);
-                            }
-                        })();
-                    </script>
                 </div>
             </div>
             <div class="text-center text-gray-500 text-xs sm:text-sm py-6 sm:py-8">

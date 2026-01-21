@@ -1,7 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import PurposeOption, VisitorFeedback, CustomerDataCollection
+from public_interface.models import (
+    CustomerDataCollection,
+    OceanoSpinnerDraw,
+    PurposeOption,
+    VisitorFeedback,
+)
 
 
 @admin.register(PurposeOption)
@@ -126,4 +131,11 @@ class CustomerDataCollectionAdmin(admin.ModelAdmin):
     )
     list_filter = ("team_to_contact", "created_at")
     search_fields = ("name", "phone_number", "email", "other_team_description")
+    ordering = ("-created_at",)
+
+
+@admin.register(OceanoSpinnerDraw)
+class OceanoSpinnerDrawAdmin(admin.ModelAdmin):
+    list_display = ("name", "phone_number", "email", "created_at")
+    search_fields = ("name", "phone_number", "email")
     ordering = ("-created_at",)

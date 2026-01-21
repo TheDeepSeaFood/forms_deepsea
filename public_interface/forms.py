@@ -1,6 +1,10 @@
 from django import forms
 
-from .models import CustomerDataCollection, VisitorFeedback
+from public_interface.models import (
+    CustomerDataCollection,
+    OceanoSpinnerDraw,
+    VisitorFeedback,
+)
 
 RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
 COMMON_RADIO_ATTRS = {"class": "flex gap-4 items-center"}
@@ -142,3 +146,29 @@ class CustomerDataCollectionForm(forms.ModelForm):
             self.add_error(
                 "other_team_description", "Please specify the team you want to contact."
             )
+
+
+class OceanoSpinnerDrawForm(forms.ModelForm):
+    class Meta:
+        model = OceanoSpinnerDraw
+        fields = "__all__"
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter your full name",
+                    "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
+            "phone_number": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter your phone number",
+                    "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
+            "email": forms.EmailInput(
+                attrs={
+                    "placeholder": "Enter your email address",
+                    "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
+                }
+            ),
+        }

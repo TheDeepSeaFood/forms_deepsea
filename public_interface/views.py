@@ -1,6 +1,10 @@
 from django.shortcuts import redirect, render
 
-from public_interface.forms import CustomerDataCollectionForm, VisitorFeedbackForm
+from public_interface.forms import (
+    CustomerDataCollectionForm,
+    OceanoSpinnerDrawForm,
+    VisitorFeedbackForm,
+)
 from public_interface.models import PurposeOption
 
 
@@ -35,4 +39,21 @@ def user_data_collection(request):
     else:
         form = CustomerDataCollectionForm()
 
-    return render(request, "public_interface/forms/user_data_collection.html", {"form": form})
+    return render(
+        request, "public_interface/forms/user_data_collection.html", {"form": form}
+    )
+
+
+def oceano_spinner_draw(request):
+    if request.method == "POST":
+        form = OceanoSpinnerDrawForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("oceano_spinner_draw")
+    else:
+        form = OceanoSpinnerDrawForm()
+    return render(
+        request,
+        "public_interface/forms/oceano_spinner_draw.html",
+        {"form": form},
+    )
