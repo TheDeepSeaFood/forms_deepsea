@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import PurposeOption, VisitorFeedback
+from .models import PurposeOption, VisitorFeedback, CustomerDataCollection
 
 
 @admin.register(PurposeOption)
@@ -112,3 +112,18 @@ class VisitorFeedbackAdmin(admin.ModelAdmin):
         return "No signature"
 
     signature_preview.short_description = "Signature Preview"
+
+
+@admin.register(CustomerDataCollection)
+class CustomerDataCollectionAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "phone_number",
+        "email",
+        "team_to_contact",
+        "other_team_description",
+        "created_at",
+    )
+    list_filter = ("team_to_contact", "created_at")
+    search_fields = ("name", "phone_number", "email", "other_team_description")
+    ordering = ("-created_at",)

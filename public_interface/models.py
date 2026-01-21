@@ -42,3 +42,29 @@ class VisitorFeedback(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.visit_date}"
+
+
+class CustomerDataCollection(models.Model):
+    TEAM_CHOICES = [
+        ("sales", "Sales"),
+        ("imports", "Imports"),
+        ("exports", "Exports"),
+        ("procurement", "Procurement"),
+        ("other", "Other"),
+    ]
+
+    name = models.CharField(max_length=150)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    team_to_contact = models.CharField(max_length=20, choices=TEAM_CHOICES)
+    other_team_description = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="Required only if 'Other' is selected",
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.team_to_contact}"

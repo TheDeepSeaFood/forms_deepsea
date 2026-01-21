@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
 
+from public_interface.forms import CustomerDataCollectionForm, VisitorFeedbackForm
 from public_interface.models import PurposeOption
-
-from .forms import VisitorFeedbackForm
 
 
 def visitor_feedback(request):
@@ -25,3 +24,15 @@ def visitor_feedback(request):
             "form": form,
         },
     )
+
+
+def user_data_collection(request):
+    if request.method == "POST":
+        form = CustomerDataCollectionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("user_data_collection")
+    else:
+        form = CustomerDataCollectionForm()
+
+    return render(request, "public_interface/forms/user_data_collection.html", {"form": form})
