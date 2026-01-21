@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Dashboard - Visitor Feedback Management
+{% endblock title %}
+{% block content %}
+    
+    <div class="p-4 sm:p-6 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">Customer Data Collection</h1>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">View all customer data collection entries</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Name</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Phone Number</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Email</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Team to Contact</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Other Team Description</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            {% if user_data_list %}
+                                {% for item in user_data_list %}
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.name }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.phone_number }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.email }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.get_team_to_contact_display }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.other_team_description|default:"—" }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            {{ item.created_at|date:"M d, Y H:i" }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6"
+                                        class="px-3 sm:px-4 py-8 text-center text-sm text-gray-500">
+                                        No customer data entries found.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <style>
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+        </style>
+    </div>
+{% endblock content %}

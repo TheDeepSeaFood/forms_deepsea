@@ -8,285 +8,33 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">Visitor Feedback</h1>
-                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Manage and review all visitor feedback submissions</p>
+                    <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">All Form Dashboard</h1>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Manage and review all form submissions</p>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-sm">
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead class="bg-gray-50 border-b border-gray-200">
-                            <tr>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Name</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Company</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Purpose</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Visit Date</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Overall Rating</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Submitted</th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            {% if feedback_list %}
-                                {% for feedback in feedback_list %}
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ feedback.first_name }} {{ feedback.last_name }}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ feedback.company_name|default:"—" }}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {% if feedback.purpose %}
-                                                {{ feedback.purpose }}
-                                            {% elif feedback.other_purpose %}
-                                                {{ feedback.other_purpose }}
-                                            {% else %}
-                                                —
-                                            {% endif %}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ feedback.visit_date|date:"M d, Y" }}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            <div class="flex items-center gap-1">
-                                                <span class="font-medium">{{ feedback.overall_impression }}/5</span>
-                                                <div class="flex">
-                                                    {% for i in "12345" %}
-                                                        {% if forloop.counter <= feedback.overall_impression %}
-                                                            <svg class="w-3 h-3 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                                            </svg>
-                                                        {% else %}
-                                                            <svg class="w-3 h-3 text-gray-300 fill-current" viewBox="0 0 20 20">
-                                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                                                            </svg>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ feedback.created_at|date:"M d, Y H:i" }}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3">
-                                            <button type="button"
-                                                    class="bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm transition-all duration-200 shadow-sm hover:shadow whitespace-nowrap"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#feedbackModal{{ feedback.id }}">
-                                                View Details
-                                            </button>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td colspan="7" class="px-3 sm:px-4 py-8 text-center text-sm text-gray-500">
-                                        No feedback submissions found.
-                                    </td>
-                                </tr>
-                            {% endif %}
-                        </tbody>
-                    </table>
+            <div style="grid-template-columns: 1fr 1fr;" class="d-grid gap-3">
+                <div class="p-2">
+                    <a href="{% url 'feedback_list' %}">
+                        <div class="card">
+                            <div class="card-body">Visitor Feedback - All List</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="p-2">
+                    <a href="{% url 'user_data_collection_list' %}">
+                        <div class="card">
+                            <div class="card-body">User Data - Gulfood2026</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="p-2">
+                    <a href="{% url 'oceano_spinner_draw_list' %}">
+                        <div class="card">
+                            <div class="card-body">Oceano Spinner Draw - All List</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <!-- Bootstrap Modals for each feedback -->
-        {% for feedback in feedback_list %}
-            <div class="modal fade" id="feedbackModal{{ feedback.id }}" tabindex="-1" aria-labelledby="feedbackModalLabel{{ feedback.id }}" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="feedbackModalLabel{{ feedback.id }}">
-                                Feedback Details - {{ feedback.first_name }} {{ feedback.last_name }}
-                            </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row g-3">
-                                <!-- Visitor Information -->
-                                <div class="col-12">
-                                    <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">Visitor Information</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">First Name</label>
-                                    <p class="form-control-plaintext">{{ feedback.first_name }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Last Name</label>
-                                    <p class="form-control-plaintext">{{ feedback.last_name }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Company Name</label>
-                                    <p class="form-control-plaintext">{{ feedback.company_name|default:"—" }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Purpose</label>
-                                    <p class="form-control-plaintext">
-                                        {% if feedback.purpose %}
-                                            {{ feedback.purpose }}
-                                        {% elif feedback.other_purpose %}
-                                            {{ feedback.other_purpose }}
-                                        {% else %}
-                                            —
-                                        {% endif %}
-                                    </p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Visit Date</label>
-                                    <p class="form-control-plaintext">{{ feedback.visit_date|date:"F d, Y" }}</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Submitted At</label>
-                                    <p class="form-control-plaintext">{{ feedback.created_at|date:"F d, Y H:i" }}</p>
-                                </div>
-
-                                <!-- Ratings -->
-                                <div class="col-12 mt-4">
-                                    <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">Ratings (1-5 Scale)</h6>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Facility Cleanliness</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.facility_cleanliness }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.facility_cleanliness 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Layout & Flow</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.layout_flow }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.layout_flow 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Food Safety</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.food_safety }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.food_safety 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Employee Hygiene</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.employee_hygiene }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.employee_hygiene 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Temperature Control</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.temperature_control }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.temperature_control 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Documentation</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.documentation }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.documentation 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Responsiveness</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-primary">{{ feedback.responsiveness }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar" role="progressbar" style="width: {% widthratio feedback.responsiveness 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Overall Impression</label>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="badge bg-success">{{ feedback.overall_impression }}/5</span>
-                                        <div class="flex-grow-1">
-                                            <div class="progress" style="height: 8px;">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: {% widthratio feedback.overall_impression 5 100 %}%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Feedback Text -->
-                                <div class="col-12 mt-4">
-                                    <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">Feedback</h6>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label fw-semibold">Strengths</label>
-                                    <div class="border rounded p-3 bg-light">
-                                        <p class="mb-0">{{ feedback.strengths|linebreaks }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label fw-semibold">Areas for Improvement</label>
-                                    <div class="border rounded p-3 bg-light">
-                                        <p class="mb-0">{{ feedback.improvements|linebreaks }}</p>
-                                    </div>
-                                </div>
-                                {% if feedback.comments %}
-                                    <div class="col-12">
-                                        <label class="form-label fw-semibold">Additional Comments</label>
-                                        <div class="border rounded p-3 bg-light">
-                                            <p class="mb-0">{{ feedback.comments|linebreaks }}</p>
-                                        </div>
-                                    </div>
-                                {% endif %}
-
-                                <!-- Signature -->
-                                {% if feedback.signature %}
-                                    <div class="col-12 mt-4">
-                                        <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">Signature</h6>
-                                        <div class="border rounded p-3 bg-light text-center">
-                                            <img src="{{ feedback.signature }}" alt="Signature" class="img-fluid" style="max-height: 150px;">
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-
-        <style>
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-        </style>
     </div>
 {% endblock content %}
