@@ -4,18 +4,21 @@
     Oceano Spinner Draw
 {% endblock title %}
 {% block form_title %}
-<h1 class="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">Oceano Spinner Draw</h1>
-<p class="text-xs text-gray-500 hidden sm:block">Form to collect the spinner data</p>
+    <h1 class="text-base sm:text-lg font-semibold text-gray-900 tracking-tight">Oceano Spinner Draw</h1>
+    <p class="text-xs text-gray-500 hidden sm:block">Form to collect the spinner data</p>
 {% endblock form_title %}
 {% block content %}
     {{ form.media }}
     <div class="py-4 sm:py-6 md:py-8 lg:py-12 px-3 sm:px-4 md:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
             <div class="card-3d bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden">
-                <div class="bg-gradient-to-r px-6 sm:px-8 lg:px-10 py-6 sm:py-8" style="background-color: #08351e; color: #e7c25d !important;"> 
+                <div class="bg-gradient-to-r px-6 sm:px-8 lg:px-10 py-6 sm:py-8"
+                     style="background-color: #08351e;
+                            color: #e7c25d !important">
                     <div class="flex items-center justify-center">
                         <div class="text-center">
-                            <div class="inline-flex items-center justify-center w-50 h-20 sm:w-24 sm:h-24 rounded-2xl mb-4 animate-float p-3 sm:p-4 shadow-lg" style="background-color: #08351e;">
+                            <div class="inline-flex items-center justify-center w-50 h-20 sm:w-24 sm:h-24 rounded-2xl mb-4 animate-float p-3 sm:p-4 shadow-lg"
+                                 style="background-color: #08351e">
                                 <img src="{% static 'images/oceano-logo-gold.png' %}"
                                      alt="Company Logo"
                                      class="w-full h-full object-contain"
@@ -23,11 +26,16 @@
                                      width="30px">
                             </div>
                             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Oceano Spinner Draw</h2>
-                            <p class="text-blue-100 text-sm sm:text-base">Complete all required fields to submit</p>
+                            <p class="text-blue-100 text-sm sm:text-base" style="font-weight: 500;">
+                                Successful submission makes you eligible for selection in the raffle draw.
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="px-6 sm:px-8 lg:px-10 py-6 sm:py-8 lg:py-10 overflow-visible">
+                    <div class="text-center">
+                        <p class="text-sm sm:text-base">Complete all required fields to submit</p>
+                    </div>
                     <form method="post" action="" class="space-y-6 sm:space-y-8">
                         {% csrf_token %}
                         {% if form.non_field_errors %}
@@ -37,7 +45,9 @@
                         {% endif %}
                         <div class="animate-slideInLeft">
                             <div class="flex items-center mb-4 sm:mb-6">
-                                <div style="background-color: #08351e; color: #e7c25d !important;" class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br rounded-lg flex items-center justify-center shadow-md mr-3">
+                                <div style="background-color: #08351e;
+                                            color: #e7c25d !important"
+                                     class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br rounded-lg flex items-center justify-center shadow-md mr-3">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6"
                                          fill="none"
                                          stroke="currentColor"
@@ -109,7 +119,9 @@
                             </div>
                         </div>
                         <div class="pt-4 sm:pt-6">
-                            <button type="submit" style="background-color: #08351e; color: #e7c25d !important;"
+                            <button type="submit"
+                                    style="background-color: #08351e;
+                                           color: #e7c25d !important"
                                     class="button-3d w-full py-4 sm:py-5 px-6 rounded-xl font-bold text-base sm:text-lg shadow-2xl transition-all duration-300 relative overflow-hidden bg-gradient-to-r">
                                 <span class="relative z-10 flex items-center justify-center">
                                     <svg class="w-6 h-6 mr-2"
@@ -131,7 +143,7 @@
             </div>
             <div class="text-center text-gray-500 text-xs sm:text-sm py-6 sm:py-8">
                 <p class="mb-2">
-                    © 2025 The Deep Seafood Company.
+                    © 2026 The Deep Seafood Company.
                     <br>
                     All rights reserved.
                 </p>

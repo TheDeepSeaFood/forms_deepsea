@@ -74,6 +74,13 @@ class OceanoSpinnerDraw(models.Model):
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
+    i_phone = models.BooleanField(default=False)
+    mystery_gift = models.BooleanField(default=False)
+    ten_percentage = models.BooleanField(default=False)
+    fifteen_percentage = models.BooleanField(default=False)
+    twenty_percentage = models.BooleanField(default=False)
+    thirty_percentage = models.BooleanField(default=False)
+    free_delivery = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -35,7 +35,7 @@ def user_data_collection(request):
         form = CustomerDataCollectionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("thank_you")
+            return redirect("thank_you_thedeepseafood")
     else:
         form = CustomerDataCollectionForm()
 
@@ -49,7 +49,7 @@ def oceano_spinner_draw(request):
         form = OceanoSpinnerDrawForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("oceano_spinner_draw")
+            return redirect("thank_you_oceano")
     else:
         form = OceanoSpinnerDrawForm()
     return render(
@@ -59,5 +59,9 @@ def oceano_spinner_draw(request):
     )
 
 
-def thank_you(request):
-    return render(request, "public_interface/thank_you.html")
+def thank_you_thedeepseafood(request):
+    return render(request, "public_interface/thank_you_thedeepseafood.html")
+
+
+def thank_you_oceano(request):
+    return render(request, "public_interface/thank_you_oceano.html")
