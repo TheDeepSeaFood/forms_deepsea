@@ -16,4 +16,14 @@ urlpatterns = [
         views.oceano_spinner_draw_list,
         name="oceano_spinner_draw_list",
     ),
+    path(
+        "oceano_spinner_draw_detail/<int:entry_id>/",
+        views.oceano_spinner_draw_detail,
+        name="oceano_spinner_draw_detail",
+    ),
+    path(
+        "oceano_spinner_draw_update/<int:entry_id>/",
+        views.oceano_spinner_draw_update,
+        name="oceano_spinner_draw_update",
+    ),
 ]

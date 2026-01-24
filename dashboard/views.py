@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_http_methods
 
 from public_interface.models import (
     VisitorFeedback,
@@ -56,3 +58,40 @@ def oceano_spinner_draw_list(request):
     print(oceano_spinner_data_list)
     context = {"oceano_spinner_data_list": oceano_spinner_data_list}
     return render(request, "dashboard/oceano_spinner_data.html", context)
+
+
+@login_required(login_url="login")
+@require_http_methods(["GET"])
+def oceano_spinner_draw_detail(request, entry_id):
+    """Fetch entry details for the popup modal"""
+    entry = get_object_or_404(OceanoSpinnerDraw, id=entry_id)
+    return JsonResponse({
+        "id": entry.id,
+        "name": entry.name,
+        "phone_number": entry.phone_number,
+        "email": entry.email,
+        "reward": entry.reward or "",
+        "created_at": entry.created_at.strftime("%B %d, %Y %H:%M"),
+    })
+
+
+@login_required(login_url="login")
+@require_http_methods(["POST"])
+def oceano_spinner_draw_update(request, entry_id):
+    """Update entry details"""
+    entry = get_object_or_404(OceanoSpinnerDraw, id=entry_id)
+    
+    try:
+        entry.name = request.POST.get("name", "").strip()
+        entry.phone_number = request.POST.get("phone_number", "").strip()
+        entry.email = request.POST.get("email", "").strip()
+        entry.reward = request.POST.get("reward", "").strip()
+        
+        # Validate required fields
+        if not entry.name or not entry.phone_number or not entry.email:
+            return JsonResponse({"success": False, "error": "Name, phone number, and email are required"})
+        
+        entry.save()
+        return JsonResponse({"success": True})
+    except Exception as e:
+        return JsonResponse({"success": False, "error": str(e)})

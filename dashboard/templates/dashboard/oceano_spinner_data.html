@@ -32,7 +32,10 @@
                                     Email
                                 </th>
                                 <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Submitted At
+                                    Coupon Code
+                                </th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -45,18 +48,27 @@
                                         </td>
                                         <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
                                             {{ entry.phone_number }}
-                                        </td>
+                                        </td>   
                                         <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
                                             {{ entry.email }}
                                         </td>
                                         <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ entry.created_at|date:"M d, Y H:i" }}
+                                            {{ entry.coupon_code |default:"N/A" }}
+                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-primary view-details-btn"
+                                                    data-entry-id="{{ entry.id }}"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#entryDetailsModal">
+                                                <i class="bi bi-eye"></i> View Details
+                                            </button>
                                         </td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td colspan="4"
+                                    <td colspan="5"
                                         class="px-3 sm:px-4 py-8 text-center text-sm text-gray-500">
                                         No Oceano Spinner draw entries found.
                                     </td>
@@ -68,4 +80,166 @@
             </div>
         </div>
     </div>
+
+    <!-- Entry Details Modal -->
+    <div class="modal fade" id="entryDetailsModal" tabindex="-1" aria-labelledby="entryDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="entryDetailsModalLabel">Entry Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="entryDetailsForm">
+                        {% csrf_token %}
+                        <input type="hidden" id="entryId" name="entry_id">
+                        
+                        <div class="mb-3">
+                            <label for="entryName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="entryName" name="name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="entryPhone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="entryPhone" name="phone_number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="entryEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="entryEmail" name="email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Reward</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardNone" value="" checked>
+                                <label class="form-check-label" for="rewardNone">
+                                    No Reward
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardIphone" value="i_phone">
+                                <label class="form-check-label" for="rewardIphone">
+                                    iPhone
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardMysteryGift" value="mystery_gift">
+                                <label class="form-check-label" for="rewardMysteryGift">
+                                    Mystery Gift
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardTenPercent" value="ten_percentage">
+                                <label class="form-check-label" for="rewardTenPercent">
+                                    10% Discount
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardFifteenPercent" value="fifteen_percentage">
+                                <label class="form-check-label" for="rewardFifteenPercent">
+                                    15% Discount
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardTwentyPercent" value="twenty_percentage">
+                                <label class="form-check-label" for="rewardTwentyPercent">
+                                    20% Discount
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardThirtyPercent" value="thirty_percentage">
+                                <label class="form-check-label" for="rewardThirtyPercent">
+                                    30% Discount
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="reward" id="rewardFreeDelivery" value="free_delivery">
+                                <label class="form-check-label" for="rewardFreeDelivery">
+                                    Free Delivery
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Created At</label>
+                            <input type="text" class="form-control" id="entryCreatedAt" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveEntryBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle view details button click
+            $('.view-details-btn').on('click', function() {
+                const entryId = $(this).data('entry-id');
+                loadEntryDetails(entryId);
+            });
+
+            // Load entry details via AJAX
+            function loadEntryDetails(entryId) {
+                $.ajax({
+                    url: '/dashboard/oceano_spinner_draw_detail/' + entryId + '/',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#entryId').val(data.id);
+                        $('#entryName').val(data.name);
+                        $('#entryPhone').val(data.phone_number);
+                        $('#entryEmail').val(data.email);
+                        $('#entryCreatedAt').val(data.created_at);
+                        
+                        // Set the reward radio button
+                        $('input[name="reward"]').prop('checked', false);
+                        if (data.reward) {
+                            $('input[name="reward"][value="' + data.reward + '"]').prop('checked', true);
+                        } else {
+                            $('#rewardNone').prop('checked', true);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading entry details:', error);
+                        alert('Error loading entry details. Please try again.');
+                    }
+                });
+            }
+
+            // Handle save button click
+            $('#saveEntryBtn').on('click', function() {
+                const formData = {
+                    'csrfmiddlewaretoken': $('[name=csrfmiddlewaretoken]').val(),
+                    'name': $('#entryName').val(),
+                    'phone_number': $('#entryPhone').val(),
+                    'email': $('#entryEmail').val(),
+                    'reward': $('input[name="reward"]:checked').val() || '',
+                };
+                const entryId = $('#entryId').val();
+
+                $.ajax({
+                    url: '/dashboard/oceano_spinner_draw_update/' + entryId + '/',
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        if (response.success) {
+                            // Close modal and reload page to show updated data
+                            $('#entryDetailsModal').modal('hide');
+                            location.reload();
+                        } else {
+                            alert('Error: ' + (response.error || 'Failed to update entry'));
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating entry:', error);
+                        alert('Error updating entry. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock content %}
