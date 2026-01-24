@@ -35,7 +35,7 @@ def user_data_collection(request):
         form = CustomerDataCollectionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("user_data_collection")
+            return redirect("thank_you")
     else:
         form = CustomerDataCollectionForm()
 
@@ -57,3 +57,7 @@ def oceano_spinner_draw(request):
         "public_interface/forms/oceano_spinner_draw.html",
         {"form": form},
     )
+
+
+def thank_you(request):
+    return render(request, "public_interface/thank_you.html")
