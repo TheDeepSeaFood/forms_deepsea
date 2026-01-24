@@ -1,57 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}
     Dashboard - Oceano Spinner Draw Entries
 {% endblock title %}
-
 {% block content %}
     <div class="p-4 sm:p-6 bg-gray-50 min-h-screen">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
                 <div>
                     <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">Oceano Spinner Draw</h1>
-                    <p class="text-xs sm:text-sm text-gray-600 mt-1">
-                        View all entries submitted for the Oceano Spinner draw
-                    </p>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">View all entries submitted for the Oceano Spinner draw</p>
                 </div>
             </div>
-
             <div class="bg-white rounded-lg shadow-sm">
                 <div class="overflow-x-auto">
                     <table class="min-w-full">
                         <thead class="bg-gray-50 border-b border-gray-200">
                             <tr>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Name
-                                </th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Phone Number
-                                </th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Email
-                                </th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Coupon Code
-                                </th>
-                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">
-                                    Actions
-                                </th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Spun At</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Name</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Phone Number</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Email</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Coupon Code</th>
+                                <th class="px-3 sm:px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase whitespace-nowrap">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             {% if oceano_spinner_data_list %}
                                 {% for entry in oceano_spinner_data_list %}
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ entry.name }}
-                                        </td>
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ entry.phone_number }}
-                                        </td>   
-                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
-                                            {{ entry.email }}
-                                        </td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">{{ entry.created_at }}</td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">{{ entry.name }}</td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">{{ entry.phone_number }}</td>
+                                        <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">{{ entry.email }}</td>
                                         <td class="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 whitespace-nowrap">
                                             {{ entry.coupon_code |default:"N/A" }}
                                         </td>
@@ -80,87 +61,113 @@
             </div>
         </div>
     </div>
-
     <!-- Entry Details Modal -->
-    <div class="modal fade" id="entryDetailsModal" tabindex="-1" aria-labelledby="entryDetailsModalLabel" aria-hidden="true">
+    <div class="modal fade"
+         id="entryDetailsModal"
+         tabindex="-1"
+         aria-labelledby="entryDetailsModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="entryDetailsModalLabel">Entry Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="entryDetailsForm">
                         {% csrf_token %}
                         <input type="hidden" id="entryId" name="entry_id">
-                        
                         <div class="mb-3">
                             <label for="entryName" class="form-label">Name</label>
                             <input type="text" class="form-control" id="entryName" name="name" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="entryPhone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="entryPhone" name="phone_number" required>
+                            <input type="text"
+                                   class="form-control"
+                                   id="entryPhone"
+                                   name="phone_number"
+                                   required>
                         </div>
-
                         <div class="mb-3">
                             <label for="entryEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="entryEmail" name="email" required>
+                            <input type="email"
+                                   class="form-control"
+                                   id="entryEmail"
+                                   name="email"
+                                   required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Reward</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardNone" value="" checked>
-                                <label class="form-check-label" for="rewardNone">
-                                    No Reward
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardNone"
+                                       value=""
+                                       checked>
+                                <label class="form-check-label" for="rewardNone">No Reward</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardIphone" value="i_phone">
-                                <label class="form-check-label" for="rewardIphone">
-                                    iPhone
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardIphone"
+                                       value="i_phone">
+                                <label class="form-check-label" for="rewardIphone">iPhone</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardMysteryGift" value="mystery_gift">
-                                <label class="form-check-label" for="rewardMysteryGift">
-                                    Mystery Gift
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardMysteryGift"
+                                       value="mystery_gift">
+                                <label class="form-check-label" for="rewardMysteryGift">Mystery Gift</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardTenPercent" value="ten_percentage">
-                                <label class="form-check-label" for="rewardTenPercent">
-                                    10% Discount
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardTenPercent"
+                                       value="ten_percentage">
+                                <label class="form-check-label" for="rewardTenPercent">10% Discount</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardFifteenPercent" value="fifteen_percentage">
-                                <label class="form-check-label" for="rewardFifteenPercent">
-                                    15% Discount
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardFifteenPercent"
+                                       value="fifteen_percentage">
+                                <label class="form-check-label" for="rewardFifteenPercent">15% Discount</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardTwentyPercent" value="twenty_percentage">
-                                <label class="form-check-label" for="rewardTwentyPercent">
-                                    20% Discount
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardTwentyPercent"
+                                       value="twenty_percentage">
+                                <label class="form-check-label" for="rewardTwentyPercent">20% Discount</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardThirtyPercent" value="thirty_percentage">
-                                <label class="form-check-label" for="rewardThirtyPercent">
-                                    30% Discount
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardThirtyPercent"
+                                       value="thirty_percentage">
+                                <label class="form-check-label" for="rewardThirtyPercent">30% Discount</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="reward" id="rewardFreeDelivery" value="free_delivery">
-                                <label class="form-check-label" for="rewardFreeDelivery">
-                                    Free Delivery
-                                </label>
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="reward"
+                                       id="rewardFreeDelivery"
+                                       value="free_delivery">
+                                <label class="form-check-label" for="rewardFreeDelivery">Free Delivery</label>
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Created At</label>
                             <input type="text" class="form-control" id="entryCreatedAt" readonly>
@@ -174,7 +181,6 @@
             </div>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
             // Handle view details button click
@@ -212,6 +218,11 @@
 
             // Handle save button click
             $('#saveEntryBtn').on('click', function() {
+                // Show confirmation dialog before submitting
+                if (!confirm('Are you sure you want to save these changes? If a reward is selected, it cannot be changed later. And an email will be sent to the participant.')) {
+                    return; // User cancelled, don't proceed
+                }
+
                 const formData = {
                     'csrfmiddlewaretoken': $('[name=csrfmiddlewaretoken]').val(),
                     'name': $('#entryName').val(),

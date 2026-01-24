@@ -1,7 +1,11 @@
 from django.db import models
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 from signature_pad import SignaturePadField
 import secrets
 import string
+import logging
 
 
 class PurposeOption(models.Model):
@@ -85,8 +89,8 @@ class OceanoSpinnerDraw(models.Model):
     ]
 
     name = models.CharField(max_length=150)
-    phone_number = models.CharField(max_length=20)
-    email = models.EmailField()
+    phone_number = models.CharField(max_length=20, unique=True)
+    email = models.EmailField(unique=True)
     coupon_code = models.CharField(max_length=50, unique=True, blank=True, null=True)
     reward = models.CharField(
         max_length=20,
@@ -110,7 +114,46 @@ class OceanoSpinnerDraw(models.Model):
             if not queryset.exists():
                 return code
 
+    def get_reward_display_name(self):
+        """Get the human-readable reward name"""
+        reward_dict = dict(self.REWARD_CHOICES)
+        return reward_dict.get(self.reward, self.reward)
+
+    def send_coupon_email(self):
+        """Send email to user with their coupon code"""
+        try:
+            reward_name = self.get_reward_display_name()
+            subject = f"Congratulations! Your {reward_name} Coupon Code"
+
+            # Render email template
+            message = render_to_string(
+                "public_interface/emails/coupon_code_email.html",
+                {
+                    "name": self.name,
+                    "reward": reward_name,
+                    "coupon_code": self.coupon_code,
+                },
+            )
+
+            # Send email with custom sender name
+            from_email = f"Oceano <{settings.DEFAULT_FROM_EMAIL}>"
+            send_mail(
+                subject=subject,
+                message="",  # Plain text version (empty since we're using HTML)
+                from_email=from_email,
+                recipient_list=[self.email],
+                html_message=message,
+                fail_silently=False,
+            )
+        except Exception as e:
+            # Log the error but don't fail the save operation
+            logger = logging.getLogger(__name__)
+            logger.error(f"Failed to send coupon email to {self.email}: {str(e)}")
+
     def save(self, *args, **kwargs):
+        # Track if coupon code is being generated for the first time
+        coupon_just_generated = False
+
         # Generate coupon code if reward is selected and coupon_code is not set
         if (
             self.reward
@@ -118,7 +161,13 @@ class OceanoSpinnerDraw(models.Model):
             and (not self.coupon_code or self.coupon_code == "None")
         ):
             self.coupon_code = self.generate_coupon_code()
+            coupon_just_generated = True
+
         super().save(*args, **kwargs)
+
+        # Send email only when a new coupon code is generated
+        if coupon_just_generated:
+            self.send_coupon_email()
 
     def __str__(self):
         return f"{self.name} - {self.email}"

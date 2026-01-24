@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Coupon Code - Oceano</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #08351e;
+            color: #e7c25d;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #08351e;
+        }
+        .message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .reward-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #08351e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .reward-info strong {
+            color: #08351e;
+            font-size: 18px;
+        }
+        .coupon-box {
+            background: linear-gradient(135deg, #08351e 0%, #0a4a2a 100%);
+            color: #e7c25d;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .coupon-code {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .coupon-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer a {
+            color: #08351e;
+            text-decoration: none;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #08351e;
+            color: #e7c25d !important;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🎉 Congratulations!</h1>
+        </div>
+        <div class="content">
+            <div class="greeting">
+                Dear {{ name }},
+            </div>
+            <div class="message">
+                Thank you for participating in the Oceano Spinner Draw! We're excited to share your coupon code.
+            </div>
+            
+            <div class="coupon-box">
+                <div class="coupon-label">Your Coupon Code</div>
+                <div class="coupon-code">{{ coupon_code }}</div>
+                <div style="font-size: 12px; margin-top: 10px; opacity: 0.9;">
+                    Please save this code and use it during checkout
+                </div>
+            </div>
+            
+            <div class="message">
+                <p>Please keep this email safe and use your coupon code when claiming your offer.</p>
+                <p>If you have any questions or need assistance, please don't hesitate to contact us.</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="https://gulfood2026.thedeepseafood.com/" class="cta-button">Visit Our Gulfood Landing Page</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p><strong>The Deep Seafood Company - Oceano</strong></p>
+            <p>
+                <a href="https://www.instagram.com/oceano.deepseafood/">Instagram</a> | 
+                <a href="https://www.facebook.com/oceano.deepseafood">Facebook</a> | 
+                <a href="https://www.linkedin.com/company/oceano-deepseafood/">LinkedIn</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 11px; color: #999;">
+                This is an automated email. Please do not reply to this message.<br>
+                © 2026 The Deep Seafood Company. All rights reserved.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
