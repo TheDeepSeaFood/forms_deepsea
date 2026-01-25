@@ -112,7 +112,7 @@ class CustomerDataCollectionForm(forms.ModelForm):
                     "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
                 }
             ),
-            "phone_number": forms.TextInput(
+            "phone_number": forms.NumberInput(
                 attrs={
                     "placeholder": "Enter your phone number",
                     "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
@@ -159,7 +159,7 @@ class OceanoSpinnerDrawForm(forms.ModelForm):
                     "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
                 }
             ),
-            "phone_number": forms.TextInput(
+            "phone_number": forms.NumberInput(
                 attrs={
                     "placeholder": "Enter your phone number",
                     "class": "input-3d w-full px-5 py-3 sm:py-4 pl-12 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 border-gray-300 bg-white hover:border-blue-400",
