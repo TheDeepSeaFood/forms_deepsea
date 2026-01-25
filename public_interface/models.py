@@ -79,12 +79,12 @@ class CustomerDataCollection(models.Model):
 class OceanoSpinnerDraw(models.Model):
     REWARD_CHOICES = [
         ("", "No Reward"),
-        ("i_phone", "iPhone"),
-        ("mystery_gift", "Mystery Gift"),
-        ("ten_percentage", "10% Discount"),
-        ("fifteen_percentage", "15% Discount"),
-        ("twenty_percentage", "20% Discount"),
-        ("thirty_percentage", "30% Discount"),
+        ("oceano_hamper", "Oceano Hamper - Worth 500AED"),
+        ("mystery_gift", "Oceano Mystery Gift - Worth 300AED"),
+        ("ten_percentage", "10% Off On Entire Oceano Range"),
+        ("fifteen_percentage", "15% Off On Oceano Smoked Range"),
+        ("twenty_percentage", "20% Off On Oceano Fresh Range"),
+        ("thirty_percentage", "30% Off On Oceano Sushi"),
         ("free_delivery", "Free Delivery"),
     ]
 
